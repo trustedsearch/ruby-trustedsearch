@@ -8,6 +8,6 @@ Gem::Specification.new do |s|
   s.email       = 'developers@trustedsearch.org'
   s.files       = ["lib/trusted_search.rb"]
   s.homepage    =
-    'http://rubygems.org/gems/trustedsearch'
+    'https://github.com/trustedsearch/ruby-trustedsearch'
   s.license       = 'MIT'
 end
