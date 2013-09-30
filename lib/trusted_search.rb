@@ -1,0 +1,3 @@
+class TrustedSearch
+	
+end
