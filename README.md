@@ -1,7 +1,7 @@
 ruby-trustedsearch
 ==================
 
-TRUSEDSearch Ruby Gem
+trustedSEARCH Ruby Gem
 
 ## <a id="requirement"></a>Requirements
 
@@ -37,7 +37,7 @@ Include the required libs & set your public and private keys
 
 ```ruby
 
-require "../lib/trustedsearch"
+require "trustedsearch"
 
 TrustedSearch.public_key = "PUBLIC_KEY"
 TrustedSearch.private_key = "PRIVATE_KEY"
@@ -46,12 +46,28 @@ TrustedSearch.environment = "production"  #default is 'sandbox'
 ```
 
 
-#### Get Business Updates
+#### Get All Business for all users locations
 See the [API documentation](http://developers.trustedsearch.org/#/get-business-updates) for a list of parameters for each API resource.
 
 ```ruby
 api = TrustedSearch::V1.new
 puts api.getBusinessUpdate().data.to_s
+```
+
+#### Get Business Updates for single location
+See the [API documentation](http://developers.trustedsearch.org/#/get-business-updates) for a list of parameters for each API resource.
+
+```ruby
+api = TrustedSearch::V1.new
+puts api.getBusinessUpdate(534f95e8-1de1-558f-885c-3962f22c9a28).data.to_s
+```
+
+#### Get Business Updates for single location since epoch 1380611103
+See the [API documentation](http://developers.trustedsearch.org/#/get-business-updates) for a list of parameters for each API resource.
+
+```ruby
+api = TrustedSearch::V1.new
+puts api.getBusinessUpdate(	534f95e8-1de1-558f-885c-3962f22c9a28, 1380611103).data.to_s
 ```
 
 #### Submit New Business Listings
