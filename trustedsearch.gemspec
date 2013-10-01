@@ -1,12 +1,12 @@
 Gem::Specification.new do |s|
   s.name        = 'trustedsearch'
-  s.version     = '1.0.1'
+  s.version     = '1.0.3'
   s.date        = '2013-10-01'
   s.summary     = "trustedSEARCH API Ruby SDK"
   s.description = "An API wrapper for the trustedSEARCH.org API."
   s.authors     = ["trustedSEARCH Team"]
   s.email       = 'developers@trustedsearch.org'
-  s.files       = ["lib/trustedsearch.rb"]
+  s.files       = Dir.glob("{lib}/**/*") + %w(LICENSE README.md)
   s.homepage    =
     'https://github.com/trustedsearch/ruby-trustedsearch'
   s.license       = 'MIT'
