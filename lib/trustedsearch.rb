@@ -4,7 +4,6 @@ require "htmlentities"
 require "httparty"
 require "json"
 require "net/http"
-require "recursive_open_struct"
 require "uri"
 require 'digest'
 

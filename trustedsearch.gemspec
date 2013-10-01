@@ -15,8 +15,7 @@ Gem::Specification.new do |s|
   s.add_dependency "htmlentities", "~> 4.3.1"
   s.add_dependency "httparty", "~> 0.11.0"
   s.add_dependency "json", "~> 1.8.0"
-  s.add_dependency "recursive-open-struct", "~> 0.4.3"
-
+  
   s.add_development_dependency "bundler", "~> 1.3"
   s.add_development_dependency "rake"
   s.add_development_dependency "webmock"
