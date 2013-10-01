@@ -1,7 +1,9 @@
 ruby-trustedsearch
 ==================
-
 trustedSEARCH Ruby Gem
+
+
+Full Documentation: [http://developers.trustedsearch.org](http://developers.trustedsearch.org/)
 
 ## <a id="requirement"></a>Requirements
 
