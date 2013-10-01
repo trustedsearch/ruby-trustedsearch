@@ -6,8 +6,21 @@ Gem::Specification.new do |s|
   s.description = "An API wrapper for the TRUSTEDSearch.org API."
   s.authors     = ["TRUSTEDSearch Team"]
   s.email       = 'developers@trustedsearch.org'
-  s.files       = ["lib/trusted_search.rb"]
+  s.files       = ["lib/trustedsearch.rb"]
   s.homepage    =
     'https://github.com/trustedsearch/ruby-trustedsearch'
   s.license       = 'MIT'
+
+  s.add_dependency "addressable", "~> 2.3.5"
+  s.add_dependency "htmlentities", "~> 4.3.1"
+  s.add_dependency "httparty", "~> 0.11.0"
+  s.add_dependency "json", "~> 1.8.0"
+  s.add_dependency "recursive-open-struct", "~> 0.4.3"
+
+  s.add_development_dependency "bundler", "~> 1.3"
+  s.add_development_dependency "rake"
+  s.add_development_dependency "webmock"
+  s.add_development_dependency "test-unit"
+  s.add_development_dependency "guard-test"
+
 end
