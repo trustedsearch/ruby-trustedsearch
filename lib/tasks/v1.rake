@@ -1,6 +1,6 @@
 namespace :v1 do
 	task :default do
-		
+
 	end
 
 	desc "Get the directory listings updates. [uuid] if not specified, returns all."
@@ -31,6 +31,24 @@ namespace :v1 do
 		contents = file.read
 		response = api.postBusiness(JSON.parse(contents))
 		file.close
+		puts response.data
+	end
+
+	task :test_fulfillment, [:public_key, :private_key, :uuid] do |t, args|
+		TrustedSearch.public_key = args.public_key
+		TrustedSearch.private_key = args.private_key
+		TrustedSearch.environment = ( ENV['env'] ? ENV['env'] : 'sandbox')
+
+		location_id = args.uuid
+		location_id = ( args.uuid ? args.uuid : nil)
+
+		if(location_id.nil?)
+			puts "You must specify a uuid of the business you wish to test."
+			next
+		end
+
+		api = TrustedSearch::V1.new
+		response = api.putTestFulfillment(location_id)
 		puts response.data
 	end
 end

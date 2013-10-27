@@ -14,7 +14,7 @@ module TrustedSearch
   	end
 
   	# Makes an API request to /directory-listings
-  	# If uuid is nil, all are returned. 
+  	# If uuid is nil, all are returned.
   	# If since is provided as an integer, only changes made since that time are returned.
   	def getBusinessUpdate(uuid = nil , since = nil)
   		method_url = 'directory-listings' + ( (uuid) ? "/#{uuid}" : '')
@@ -26,10 +26,16 @@ module TrustedSearch
   		return self.get(method_url, params)
   	end
 
-  	#Submit a single business more multiple business for 
+  	#Submit a single business more multiple business for
   	def postBusiness( data = [] )
-  		method_url = 'local-business'  		
+  		method_url = 'local-business'
   		return self.post(method_url, {} , data )
   	end
+
+
+    def putTestFulfillment( uuid = nil)
+      method_url = 'test-fulfillment/' + uuid.to_s
+      return self.put(method_url)
+    end
   end
 end

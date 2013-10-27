@@ -4,7 +4,7 @@
 		"order" : {
 			"onBehalfOf" : "Sample Partner",
 			"packages" : [
-				9,10
+				"yp000034"
 			]
 		},
 		"contact" : {
@@ -29,7 +29,7 @@
 		"order" : {
 			"onBehalfOf" : "Sample Partner",
 			"packages" : [
-				9,10
+				"yp000034"
 			]
 		},
 		"contact" : {

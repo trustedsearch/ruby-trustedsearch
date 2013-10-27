@@ -137,8 +137,23 @@ response = api.postBusiness(business_data)
 uuid = response.data[0]["uuid"]
 ```
 
+### Testing
+
+#### Testing / Simulating a change in a business listing
+
+```ruby
+
+uuid = '534f95e8-1de1-558f-885c-3962f22c9a28'
+api = TrustedSearch::V1.new
+response = api.putTestFulfillment(uuid)
+
+
+```
+
+
+
 ### Rake Examples
-	
+
 Get all udpates in your account
 
 	rake v1:updates[YourPublicKey,YourPrivateKey]
@@ -149,7 +164,7 @@ Get update for location 534f95e8-1de1-558f-885c-3962f22c9a28
 
 Get update for location 534f95e8-1de1-558f-885c-3962f22c9a28 since 1380611103
 
-	rake v1:updates[YourPublicKey,YourPrivateKey,534f95e8-1de1-558f-885c-3962f22c9a28,1380611103] 
+	rake v1:updates[YourPublicKey,YourPrivateKey,534f95e8-1de1-558f-885c-3962f22c9a28,1380611103]
 
 Submit a new location using JSON data in file relative path "examples/body.json"
 

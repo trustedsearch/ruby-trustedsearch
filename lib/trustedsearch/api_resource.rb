@@ -31,14 +31,14 @@ module TrustedSearch
       end
     end
 
-    def get(api_resource, params = {}, body = {})
+    def get(api_resource, params = {}, body = '')
       @resource ||= api_resource
       has_keys()
 
       raise ArgumentError, "Params must be a Hash; got #{params.class} instead" unless params.is_a? Hash
 
       timestamp = get_time()
-      
+
       url_to_sign = base_path + api_resource
 
       params.merge!({
@@ -54,14 +54,15 @@ module TrustedSearch
     def get_time
       return Time.now.utc.to_i
     end
-    def post(api_resource, params = {}, body = [])
+
+    def post(api_resource, params = {}, body = {})
       @resource ||= api_resource
       has_keys()
 
       raise ArgumentError, "Params must be a Hash; got #{params.class} instead" unless params.is_a? Hash
 
       timestamp = get_time()
-      
+
       url_to_sign = base_path + api_resource
 
       params.merge!({
@@ -74,9 +75,30 @@ module TrustedSearch
       request('post', resource_url, params, body)
     end
 
+    def put(api_resource, params = {}, body = {})
+      @resource ||= api_resource
+      has_keys()
+
+      raise ArgumentError, "Params must be a Hash; got #{params.class} instead" unless params.is_a? Hash
+
+      timestamp = get_time()
+
+      url_to_sign = base_path + api_resource
+
+      params.merge!({
+        apikey: TrustedSearch.public_key,
+        signature: sign_request(TrustedSearch.private_key, url_to_sign, body, timestamp ),
+        timestamp: timestamp
+      })
+
+      resource_url = end_point + url_to_sign
+
+      request('put', resource_url, params, body)
+    end
+
     def sign_request( private_key, url, body, timestamp )
 
-      body_md5 = ( body.empty? ) ? '' :  Base64.strict_encode64( Digest::MD5.digest(body.to_json) )
+      body_md5 = (body == "") ? "" : Base64.strict_encode64( Digest::MD5.digest(body.to_json) )
       signature = url + body_md5 + timestamp.to_s
       signature = Base64.strict_encode64( Digest::HMAC.digest(signature, private_key , Digest::SHA1) )
       return signature
@@ -92,7 +114,9 @@ module TrustedSearch
     end
 
 
-    def request(method='get', resource_url, params, body )
+    def request(method='get', resource_url, params, body)
+      #puts resource_url
+      #puts params.to_json
 
       timeout = TrustedSearch.api_timeout
       begin
@@ -102,8 +126,10 @@ module TrustedSearch
           response = self.class.get(resource_url, query: params, timeout: timeout)
         when 'post'
           response = self.class.post(resource_url, {:query => params, :body => body.to_json, :timeout => timeout } )
+        when 'put'
+          response = self.class.put(resource_url, {:query => params, :body => body.to_json, :timeout => timeout } )
         end
-        
+
       rescue Timeout::Error
         raise ConnectionError.new("Timeout error (#{timeout}s)")
       end
@@ -112,6 +138,8 @@ module TrustedSearch
 
 
     def process(response)
+      #puts response.to_json
+
       case response.code
       when 200, 201, 204
         APIResponse.new(response)
