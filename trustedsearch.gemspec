@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'trustedsearch'
-  s.version     = '1.0.4'
+  s.version     = '1.0.5'
   s.date        = '2013-10-28'
   s.summary     = "trustedSEARCH API Ruby SDK"
   s.description = "An API wrapper for the trustedSEARCH.org API."

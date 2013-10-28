@@ -19,7 +19,6 @@ module TrustedSearch
   	def getBusinessUpdate(uuid = nil , since = nil)
 
   		method_url = 'directory-listings' + ( ( uuid ) ? "/#{uuid}" : '')
-      puts method_url
   		params = {}
   		if(since)
   			params[:since] = since
