@@ -1,11 +1,12 @@
 [
 	{
-		"externalId" : "ABC123",
+		"externalId" : "ABC2014",
 		"order" : {
 			"onBehalfOf" : "Sample Partner",
 			"packages" : [
 				"yp000034"
-			]
+			],
+			"termsAccepted" : true
 		},
 		"contact" : {
 			"firstName" : "Albert",
@@ -21,31 +22,6 @@
 			"postalCode" : "93041",
 			"phoneTollFree" :"(800) 555-5555",
 			"website" : "http://www.relativitylane.com",
-			"email" : "info@relativitylane.com"
-		}
-	},
-	{
-		"externalId" : "ABC456",
-		"order" : {
-			"onBehalfOf" : "Sample Partner",
-			"packages" : [
-				"yp000034"
-			]
-		},
-		"contact" : {
-			"firstName" : "Albert",
-			"lastName" : "Einstein",
-			"email" : "albert@trustedsearch.org",
-			"phone" : "4444444444"
-		},
-		"business" : {
-			"name" : "Albert's Relativity Lane",
-			"street" : "456 Cherry Tree Lane",
-			"city" : "Santa Barbara",
-			"state" : "CA",
-			"postalCode" : "93041",
-			"phoneTollFree" :"(800) 555-5555",
-			"website" : "http://www.relativitylane.com/mc2",
 			"email" : "info@relativitylane.com"
 		}
 	}

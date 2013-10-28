@@ -4,7 +4,7 @@ module TrustedSearch
 
     def initialize(response)
       @request = response.request
-      @data = JSON.parse(response.body)
+      @data = response.body.strip.to_json
     end
 
   end

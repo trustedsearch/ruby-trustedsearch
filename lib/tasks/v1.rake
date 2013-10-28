@@ -9,6 +9,9 @@ namespace :v1 do
 		TrustedSearch.private_key = args.private_key
 		TrustedSearch.environment = ( ENV['env'] ? ENV['env'] : 'sandbox')
 		uuid = ( args.uuid.nil? ? nil : args.uuid)
+		if(uuid == "")
+			uuid = nil
+		end
 		since = ( args.since.nil? ? nil : args.since)
 		api = TrustedSearch::V1.new
 		puts api.getBusinessUpdate(uuid, since).data.to_s

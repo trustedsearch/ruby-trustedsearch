@@ -17,7 +17,9 @@ module TrustedSearch
   	# If uuid is nil, all are returned.
   	# If since is provided as an integer, only changes made since that time are returned.
   	def getBusinessUpdate(uuid = nil , since = nil)
-  		method_url = 'directory-listings' + ( (uuid) ? "/#{uuid}" : '')
+
+  		method_url = 'directory-listings' + ( ( uuid ) ? "/#{uuid}" : '')
+      puts method_url
   		params = {}
   		if(since)
   			params[:since] = since

@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'trustedsearch'
-  s.version     = '1.0.3'
-  s.date        = '2013-10-01'
+  s.version     = '1.0.4'
+  s.date        = '2013-10-28'
   s.summary     = "trustedSEARCH API Ruby SDK"
   s.description = "An API wrapper for the trustedSEARCH.org API."
   s.authors     = ["trustedSEARCH Team"]
@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.add_dependency "htmlentities", "~> 4.3.1"
   s.add_dependency "httparty", "~> 0.11.0"
   s.add_dependency "json", "~> 1.8.0"
-  
+
   s.add_development_dependency "bundler", "~> 1.3"
   s.add_development_dependency "rake"
   s.add_development_dependency "webmock"
