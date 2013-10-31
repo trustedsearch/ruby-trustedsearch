@@ -14,7 +14,14 @@ namespace :v1 do
 		end
 		since = ( args.since.nil? ? nil : args.since)
 		api = TrustedSearch::V1.new
-		puts api.getBusinessUpdate(uuid, since).data.to_s
+		begin
+			puts api.getBusinessUpdate(uuid, since).data.to_s
+		rescue Exception => e
+			puts e.message
+			puts e.body
+			puts e.code
+		end
+
 	end
 
 	desc "Submit a listings to be enhanced and created."
@@ -32,7 +39,15 @@ namespace :v1 do
 		api = TrustedSearch::V1.new
 		file = File.open(body_file, "rb")
 		contents = file.read
-		response = api.postBusiness(JSON.parse(contents))
+
+		begin
+			response = api.postBusiness(JSON.parse(contents))
+			puts response.data
+			puts response.code
+		rescue Exception => e
+			puts e.body
+		end
+
 		file.close
 		puts response.data
 	end
@@ -51,7 +66,15 @@ namespace :v1 do
 		end
 
 		api = TrustedSearch::V1.new
-		response = api.putTestFulfillment(location_id)
-		puts response.data
+
+		begin
+			response = api.putTestFulfillment(location_id)
+			puts response.data
+			puts response.code
+		rescue Exception => e
+			puts e.body
+		end
+
+
 	end
 end
