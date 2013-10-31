@@ -17,6 +17,7 @@ namespace :v1 do
 		begin
 			puts api.getBusinessUpdate(uuid, since).data.to_s
 		rescue Exception => e
+			puts "Error"
 			puts e.message
 			puts e.body
 			puts e.code
@@ -36,20 +37,20 @@ namespace :v1 do
 			next
 		end
 
-		api = TrustedSearch::V1.new
-		file = File.open(body_file, "rb")
-		contents = file.read
 
+		file = File.open(body_file, "rb")
 		begin
+			api = TrustedSearch::V1.new
+			contents = file.read
 			response = api.postBusiness(JSON.parse(contents))
-			puts response.data
 			puts response.code
+			puts response.data
 		rescue Exception => e
 			puts e.body
 		end
 
 		file.close
-		puts response.data
+
 	end
 
 	task :test_fulfillment, [:public_key, :private_key, :uuid] do |t, args|
@@ -69,8 +70,8 @@ namespace :v1 do
 
 		begin
 			response = api.putTestFulfillment(location_id)
-			puts response.data
 			puts response.code
+			puts response.data
 		rescue Exception => e
 			puts e.body
 		end
