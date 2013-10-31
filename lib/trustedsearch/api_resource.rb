@@ -138,9 +138,10 @@ module TrustedSearch
 
 
     def process(response)
-      #puts response.to_json
+      #puts response.code
 
       case response.code
+
       when 200, 201, 204
         APIResponse.new(response)
       when 400, 404
@@ -148,8 +149,12 @@ module TrustedSearch
       when 401
         raise AuthenticationError.new(response.message, response.code)
       else
-        raise Error.new(response.message, response.code)
+        error = Error.new(response.message, response.code)
+        error.body = response.body
+      raise error
+
       end
+
     end
   end
 end
