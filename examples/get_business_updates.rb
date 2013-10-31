@@ -21,7 +21,7 @@ business_data = [
 		:order => {
 			:onBehalfOf => 'Evo Media',
 			:packages => [
-				9,10
+				"YOUR_PACKAGE_ID"
 			]
 		},
 		:contact => {
@@ -46,7 +46,7 @@ business_data = [
 		:order => {
 			:onBehalfOf => 'Evo Media',
 			:packages => [
-				9,10
+				"YOUR_PACKAGE_ID"
 			]
 		},
 		:contact => {
