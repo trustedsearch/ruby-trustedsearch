@@ -41,11 +41,13 @@ module TrustedSearch
 
       url_to_sign = base_path + api_resource
 
-      params.merge!({
-        apikey: TrustedSearch.public_key,
-        signature: sign_request(TrustedSearch.private_key, url_to_sign, body, timestamp ),
-        timestamp: timestamp
-      })
+      params.merge!(
+        {
+          apikey: TrustedSearch.public_key,
+          signature: sign_request(TrustedSearch.private_key, url_to_sign, body, timestamp ),
+          timestamp: timestamp
+        }
+      )
 
       resource_url = end_point + url_to_sign
       request('get', resource_url, params, body)
@@ -138,16 +140,19 @@ module TrustedSearch
 
 
     def process(response)
-      #puts response.code
+      # puts response.code
+      # body = JSON.parse(response.body)
+      # puts body.to_json
+      # puts response.message
 
       case response.code
 
       when 200, 201, 204
         APIResponse.new(response)
-      when 400, 404
-        raise InvalidRequestError.new(response.message, response.code)
+      when 400, 404, 409
+        raise InvalidRequestError.new(response, response.code)
       when 401
-        raise AuthenticationError.new(response.message, response.code)
+        raise AuthenticationError.new(response, response.code)
       else
         error = Error.new(response.message, response.code)
         error.body = response.body

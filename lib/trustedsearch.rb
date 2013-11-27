@@ -31,7 +31,7 @@ module TrustedSearch
     }
   }
 
-  @api_base_url = "http://api.trustedsearch.org"
+  @api_base_url = "https://api.trustedsearch.org"
   @api_version  = 1
   @api_timeout  = 30
   @environment = 'sandbox'

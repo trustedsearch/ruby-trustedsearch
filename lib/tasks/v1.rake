@@ -26,7 +26,6 @@ namespace :v1 do
 	end
 
 	desc "Submit a listings to be enhanced and created."
-
 	task :submit, [:public_key, :private_key, :file] do |t, args|
 		TrustedSearch.public_key = args.public_key
 		TrustedSearch.private_key = args.private_key
@@ -37,7 +36,7 @@ namespace :v1 do
 			next
 		end
 
-
+		puts ENV['PWD']
 		file = File.open(body_file, "rb")
 		begin
 			api = TrustedSearch::V1.new
@@ -46,6 +45,7 @@ namespace :v1 do
 			puts response.code
 			puts response.data
 		rescue Exception => e
+			puts e.message
 			puts e.body
 		end
 
