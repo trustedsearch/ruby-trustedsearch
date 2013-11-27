@@ -4,6 +4,7 @@ trustedSEARCH Ruby Gem
 
 
 Full Documentation: [http://developers.trustedsearch.org](http://developers.trustedsearch.org/)
+Ruby Gems: [https://rubygems.org/gems/trustedsearch](https://rubygems.org/gems/trustedsearch)
 
 ## <a id="requirement"></a>Requirements
 
