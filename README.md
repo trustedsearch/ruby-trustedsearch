@@ -152,6 +152,44 @@ response = api.putTestFulfillment(uuid)
 
 ```
 
+### Error Handling
+Exceptions are thrown when there is an api issue.
+
+```ruby
+
+since = ( args.since.nil? ? nil : args.since)
+api = TrustedSearch::V1.new
+begin
+	puts api.getBusinessUpdate(uuid, since).data.to_s
+rescue Exception => e
+	puts "Message: " + e.message
+	puts "Body:"
+	puts e.body
+	puts "Code: " + e.code.to_s
+	
+end
+
+```
+
+Output: (Body is formatted for readability.)
+
+```javascript
+
+Message: Bummer, we couldn't save this record. You might have to fix a few things first and try again.
+Body:
+{	
+	"status"=>"error", 
+	"code"=>409, 
+	"message"=>"Bummer, we couldn't save this record. You might have to fix a few things first and try again.", 
+	"error"=>"ModelSaveFailedException", 
+	"debug"=>"Model was unable to save, check validation errors.", 
+	"validations"=>{"uuid"=>["The uuid field is required."], 
+	"business_name"=>["The business name field is required."]}, 
+	"data"=>[]
+}
+Code: 409
+
+```
 
 
 ### Rake Examples

@@ -17,10 +17,10 @@ namespace :v1 do
 		begin
 			puts api.getBusinessUpdate(uuid, since).data.to_s
 		rescue Exception => e
-			puts "Error"
-			puts e.message
+			puts "Message: " + e.message
+			puts "Body:"
 			puts e.body
-			puts e.code
+			puts "Code: " + e.code.to_s
 		end
 
 	end
@@ -36,7 +36,6 @@ namespace :v1 do
 			next
 		end
 
-		puts ENV['PWD']
 		file = File.open(body_file, "rb")
 		begin
 			api = TrustedSearch::V1.new
@@ -45,8 +44,10 @@ namespace :v1 do
 			puts response.code
 			puts response.data
 		rescue Exception => e
-			puts e.message
+			puts "Message: " + e.message
+			puts "Body:"
 			puts e.body
+			puts "Code: " + e.code.to_s
 		end
 
 		file.close
