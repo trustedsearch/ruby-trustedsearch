@@ -3,7 +3,8 @@ ruby-trustedsearch
 trustedSEARCH Ruby Gem
 
 
-Full Documentation: [http://developers.trustedsearch.org](http://developers.trustedsearch.org/)
+Full Documentation: [http://developers.trustedsearch.org](http://developers.trustedsearch.org)
+
 Ruby Gems: [https://rubygems.org/gems/trustedsearch](https://rubygems.org/gems/trustedsearch)
 
 ## <a id="requirement"></a>Requirements
@@ -170,3 +171,7 @@ Get update for location 534f95e8-1de1-558f-885c-3962f22c9a28 since 1380611103
 Submit a new location using JSON data in file relative path "examples/body.json"
 
 	rake v1:submit[YourPublicKey,YourPrivateKey,"examples/body.json"]
+
+SANDBOX ONLY: Test the fulfilment process for development & testing purposes
+
+	rake v1:test_fulfillment[YourPublicKey,YourPrivateKey,534f95e8-1de1-558f-885c-3962f22c9a28]
