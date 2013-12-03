@@ -66,12 +66,12 @@ api = TrustedSearch::V1.new
 puts api.getBusinessUpdate(534f95e8-1de1-558f-885c-3962f22c9a28).data.to_s
 ```
 
-#### Get Business Updates for single location since epoch 1380611103
+#### Get Business Updates since epoch 1380611103
 See the [API documentation](http://developers.trustedsearch.org/#/get-business-updates) for a list of parameters for each API resource.
 
 ```ruby
 api = TrustedSearch::V1.new
-puts api.getBusinessUpdate(	534f95e8-1de1-558f-885c-3962f22c9a28, 1380611103).data.to_s
+puts api.getBusinessUpdateSince(1380611103).data.to_s
 ```
 
 #### Submit New Business Listings
@@ -202,9 +202,9 @@ Get update for location 534f95e8-1de1-558f-885c-3962f22c9a28
 
 	rake v1:updates[YourPublicKey,YourPrivateKey,534f95e8-1de1-558f-885c-3962f22c9a28]
 
-Get update for location 534f95e8-1de1-558f-885c-3962f22c9a28 since 1380611103
+Get update  since 1380611103
 
-	rake v1:updates[YourPublicKey,YourPrivateKey,534f95e8-1de1-558f-885c-3962f22c9a28,1380611103]
+	rake v1:updates_since[YourPublicKey,YourPrivateKey,1380611103]
 
 Submit a new location using JSON data in file relative path "examples/body.json"
 

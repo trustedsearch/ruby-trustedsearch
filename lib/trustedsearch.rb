@@ -28,6 +28,9 @@ module TrustedSearch
     },
     :production => {
       :domain => 'https://api.trustedsearch.org'
+    },
+    :local => {
+      :domain => 'http://api.local.trustedsearch.org'
     }
   }
 

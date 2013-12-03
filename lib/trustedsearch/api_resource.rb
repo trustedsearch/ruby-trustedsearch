@@ -110,6 +110,8 @@ module TrustedSearch
     def end_point
       if(TrustedSearch.environment == 'production')
         return TrustedSearch.environments[:production][:domain]
+      elsif(TrustedSearch.environment == 'local')
+        return TrustedSearch.environments[:local][:domain]
       else
         return TrustedSearch.environments[:sandbox][:domain]
       end

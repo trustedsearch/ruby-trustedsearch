@@ -4,7 +4,7 @@ namespace :v1 do
 	end
 
 	desc "Get the directory listings updates. [uuid] if not specified, returns all."
-	task :updates, [:public_key, :private_key, :uuid, :since] do |t, args|
+	task :updates, [:public_key, :private_key, :uuid] do |t, args|
 		TrustedSearch.public_key = args.public_key
 		TrustedSearch.private_key = args.private_key
 		TrustedSearch.environment = ( ENV['env'] ? ENV['env'] : 'sandbox')
@@ -12,10 +12,27 @@ namespace :v1 do
 		if(uuid == "")
 			uuid = nil
 		end
+		api = TrustedSearch::V1.new
+		begin
+			puts api.getBusinessUpdate(uuid).data.to_s
+		rescue Exception => e
+			puts "Message: " + e.message
+			puts "Body:"
+			puts e.body
+			puts "Code: " + e.code.to_s
+		end
+
+	end
+
+	desc "Get the directory listings updates. from a given point in time."
+	task :updates_since, [:public_key, :private_key, :since] do |t, args|
+		TrustedSearch.public_key = args.public_key
+		TrustedSearch.private_key = args.private_key
+		TrustedSearch.environment = ( ENV['env'] ? ENV['env'] : 'sandbox')
 		since = ( args.since.nil? ? nil : args.since)
 		api = TrustedSearch::V1.new
 		begin
-			puts api.getBusinessUpdate(uuid, since).data.to_s
+			puts api.getBusinessUpdateSince(since).data.to_s
 		rescue Exception => e
 			puts "Message: " + e.message
 			puts "Body:"

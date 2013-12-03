@@ -15,17 +15,22 @@ module TrustedSearch
 
   	# Makes an API request to /directory-listings
   	# If uuid is nil, all are returned.
-  	# If since is provided as an integer, only changes made since that time are returned.
-  	def getBusinessUpdate(uuid = nil , since = nil)
+  	def getBusinessUpdate(uuid = nil)
 
   		method_url = 'directory-listings' + ( ( uuid ) ? "/#{uuid}" : '')
   		params = {}
-  		if(since)
-  			params[:since] = since
-  		end
-
   		return self.get(method_url, params)
   	end
+
+    # Makes an API request to /directory-listings
+    # Since is an integer, only changes made since that time are returned.
+    def getBusinessUpdateSince( since )
+
+      method_url = 'directory-listings'
+      params = {}
+      params[:since] = since
+      return self.get(method_url, params)
+    end
 
   	#Submit a single business more multiple business for
   	def postBusiness( data = [] )
