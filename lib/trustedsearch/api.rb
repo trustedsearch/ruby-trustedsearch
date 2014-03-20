@@ -13,6 +13,12 @@ module TrustedSearch
   	  "/v1/"
   	end
 
+    #Update All request to Version 1.
+    def request(method='get', resource_url, params, body)
+      TrustedSearch::api_version = 1
+      super
+    end
+
   	# Makes an API request to /directory-listings
   	# If uuid is nil, all are returned.
   	def getBusinessUpdate(uuid = nil)
