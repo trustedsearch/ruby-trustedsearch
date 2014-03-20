@@ -57,6 +57,12 @@ See the [API documentation](http://developers.trustedsearch.org/#/get-business-u
 api = TrustedSearch::V1.new
 puts api.getBusinessUpdate().data.to_s
 ```
+##### Rake
+
+```ruby
+rake v1:updates[YourPublicKey,YourPrivateKey]
+```
+
 
 #### Get Business Updates for single location
 See the [API documentation](http://developers.trustedsearch.org/#/get-business-updates) for a list of parameters for each API resource.
@@ -66,12 +72,26 @@ api = TrustedSearch::V1.new
 puts api.getBusinessUpdate(534f95e8-1de1-558f-885c-3962f22c9a28).data.to_s
 ```
 
+##### Rake
+Get update for location 534f95e8-1de1-558f-885c-3962f22c9a28
+
+```ruby
+rake v1:updates[YourPublicKey,YourPrivateKey,534f95e8-1de1-558f-885c-3962f22c9a28]
+```
+
+
 #### Get Business Updates since epoch 1380611103
 See the [API documentation](http://developers.trustedsearch.org/#/get-business-updates) for a list of parameters for each API resource.
 
 ```ruby
 api = TrustedSearch::V1.new
 puts api.getBusinessUpdateSince(1380611103).data.to_s
+```
+
+##### Rake
+Get update  since 1380611103
+```ruby
+rake v1:updates_since[YourPublicKey,YourPrivateKey,1380611103]
 ```
 
 #### Submit New Business Listings
@@ -139,6 +159,14 @@ response = api.postBusiness(business_data)
 uuid = response.data[0]["uuid"]
 ```
 
+##### Rake
+
+Submit a new location using JSON data in file relative path "examples/body.json"
+
+```ruby
+rake v1:submit[YourPublicKey,YourPrivateKey,"examples/body.json"]
+```
+
 ### Testing
 
 #### Testing / Simulating a change in a business listing
@@ -150,35 +178,17 @@ api = TrustedSearch::V1.new
 response = api.putTestFulfillment(uuid)
 
 ```
-
-### V1 Rake Examples
-
-Get all udpates in your account
-
-	rake v1:updates[YourPublicKey,YourPrivateKey]
-
-Get update for location 534f95e8-1de1-558f-885c-3962f22c9a28
-
-	rake v1:updates[YourPublicKey,YourPrivateKey,534f95e8-1de1-558f-885c-3962f22c9a28]
-
-Get update  since 1380611103
-
-	rake v1:updates_since[YourPublicKey,YourPrivateKey,1380611103]
-
-Submit a new location using JSON data in file relative path "examples/body.json"
-
-	rake v1:submit[YourPublicKey,YourPrivateKey,"examples/body.json"]
+##### Rake
 
 SANDBOX ONLY: Test the fulfilment process for development & testing purposes
 
-	rake v1:test_fulfillment[YourPublicKey,YourPrivateKey,534f95e8-1de1-558f-885c-3962f22c9a28]
-
+```ruby
+rake v1:test_fulfillment[YourPublicKey,YourPrivateKey,534f95e8-1de1-558f-885c-3962f22c9a28]
+```
 
 ## V2 Api Examples
 
 ### Hooks
-
-
 
 #### Index: Retrieve an array of hooks that can be subscribed to.
 [API documentation](http://developers.trustedsearch.org/#/v2-subscriptions-index)
@@ -255,10 +265,18 @@ puts hook.show("1").data.to_json
 
 #### Index: Retrieve an array of all hook subscriptions you are subscribed to.
 
+[API documentation](http://developers.trustedsearch.org/#/v2-subscriptions-index)
+
 ```ruby
 subscription = TrustedSearch::V2::HookSubscription.new
 pp subscription.index().data
 
+```
+
+##### Rake
+
+```ruby
+rake v2:hooksubscriptions:index[0e2e66593bd4e7423ab83b2ded17acfa,pakaThe3rupHuprEnupraCha]
 ```
 
 ##### Response
@@ -292,16 +310,22 @@ pp subscription.index().data
 
 #### Create: Create a new hook subscription
 
+[API documentation](http://developers.trustedsearch.org/#/v2-subscriptions-create)
+
 ```ruby
 
 subscription = TrustedSearch::V2::HookSubscription.new
-
 data = {
 	:hook => "location.updates",
 	:target_url => "http://api.myendpoint.com/trustedsearch/location-updates"
 }
 pp subscription.create(data).data	
+```
 
+##### Rake
+
+```ruby
+rake v2:hooksubscriptions:create[0e2e66593bd4e7423ab83b2ded17acfa,pakaThe3rupHuprEnupraCha,location.update,http://api.myendpoint.com/trustedsearch/location-updates]
 ```
 
 ##### Response
@@ -323,9 +347,17 @@ pp subscription.create(data).data
 
 #### Show: Show a hook subscription record
 
+[API documentation](http://developers.trustedsearch.org/#/v2-subscriptions-show)
+
 ```ruby
 subscription = TrustedSearch::V2::HookSubscription.new
 pp subscription.show("bdd46e50-669a-49cf-93ce-db682f6e9008").data
+```
+
+##### Rake
+
+```ruby
+rake env=local v2:hooksubscriptions:show[0e2e66593bd4e7423ab83b2ded17acfa,pakaThe3rupHuprEnupraCha,bdd46e50-669a-49cf-93ce-db682f6e9008]
 ```
 
 ##### Response
@@ -348,6 +380,8 @@ pp subscription.show("bdd46e50-669a-49cf-93ce-db682f6e9008").data
 
 #### Update: Update an existing hook subscription record.
 
+[API documentation](http://developers.trustedsearch.org/#/v2-subscriptions-update)
+
 ```ruby
 subscription = TrustedSearch::V2::HookSubscription.new
 data = {
@@ -355,6 +389,12 @@ data = {
 	:target_url => "http://api.myendpoint.com/trustedsearch/location-audit"
 }
 pp subscription.update("bdd46e50-669a-49cf-93ce-db682f6e9008", data).data
+```
+
+##### Rake
+
+```ruby
+rake v2:hooksubscriptions:update[0e2e66593bd4e7423ab83b2ded17acfa,pakaThe3rupHuprEnupraCha,bdd46e50-669a-49cf-93ce-db682f6e9008,location.audit,http://api.myendpoint.com/trustedsearch/location-audit]
 ```
 
 ##### Response
@@ -377,9 +417,16 @@ pp subscription.update("bdd46e50-669a-49cf-93ce-db682f6e9008", data).data
 
 #### Destroy: Destroy an existing hook-subscription record.
 
+[API documentation](http://developers.trustedsearch.org/#/v2-subscriptions-destroy)
+
 ```ruby
 subscription = TrustedSearch::V2::HookSubscription.new
 pp subscription.destroy(args.id).data
+```
+##### Rake
+
+```ruby
+rake v2:hooksubscriptions:destroy[0e2e66593bd4e7423ab83b2ded17acfa,pakaThe3rupHuprEnupraCha,bdd46e50-669a-49cf-93ce-db682f6e9008]
 ```
 
 ##### Response
