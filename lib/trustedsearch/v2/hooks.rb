@@ -7,8 +7,8 @@ module TrustedSearch
         @resource = 'hooks'
       end
       
-
-      def all()
+      #Retrieve an array of all available hooks
+      def index()
         method_url = @resource
         return self.get(method_url)
       end

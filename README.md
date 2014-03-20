@@ -35,7 +35,7 @@ The gem is designed to support all existing and future [TRUSTEDSearch API's](htt
 To start using the gem, you need to be given your sandbox and production public & private keys.
 
 
-### API Examples
+## API V1 Examples
 
 Include the required libs & set your public and private keys
 
@@ -149,6 +149,98 @@ uuid = '534f95e8-1de1-558f-885c-3962f22c9a28'
 api = TrustedSearch::V1.new
 response = api.putTestFulfillment(uuid)
 
+```
+
+### V1 Rake Examples
+
+Get all udpates in your account
+
+	rake v1:updates[YourPublicKey,YourPrivateKey]
+
+Get update for location 534f95e8-1de1-558f-885c-3962f22c9a28
+
+	rake v1:updates[YourPublicKey,YourPrivateKey,534f95e8-1de1-558f-885c-3962f22c9a28]
+
+Get update  since 1380611103
+
+	rake v1:updates_since[YourPublicKey,YourPrivateKey,1380611103]
+
+Submit a new location using JSON data in file relative path "examples/body.json"
+
+	rake v1:submit[YourPublicKey,YourPrivateKey,"examples/body.json"]
+
+SANDBOX ONLY: Test the fulfilment process for development & testing purposes
+
+	rake v1:test_fulfillment[YourPublicKey,YourPrivateKey,534f95e8-1de1-558f-885c-3962f22c9a28]
+
+
+## V2 Api Examples
+
+### Hooks
+
+
+
+#### Index: Retrieve an array of hooks that can be subscribed to.
+[API documentation](http://developers.trustedsearch.org/#/v2-subscriptions-index)
+
+```ruby
+hook = TrustedSearch::V2::Hook.new
+puts hook.index().data.to_json
+```
+
+##### Response
+```ruby
+{
+	:status=>"success",
+ 	:code=>200,
+ 	:message=>"",
+ 	:data=>
+  		[
+  			{
+				:id          =>	1,
+				:name        =>	"location.updates",
+				:description => "Data for the location has been update within TRUSTEDSearch ecosystem.",
+				:product_id  =>	nil,
+				:created_at  =>	"0000-00-00 00:00:00",
+				:updated_at  =>	"0000-00-00 00:00:00"
+	    	},
+	   		{
+				:id          =>	2,
+				:name        =>	"location.audit",
+				:description =>	"Results of an audit.",
+				:product_id  =>	63,
+				:created_at  =>	"0000-00-00 00:00:00",
+				:updated_at  =>	"0000-00-00 00:00:00"
+	    	},
+	   		{
+				:id          =>	3,
+				:name        =>	"location.report",
+				:description =>	"Results of a recurring reporting for a given location and its listings.",
+				:product_id  =>	64,
+				:created_at  =>	"0000-00-00 00:00:00",
+				:updated_at  =>	"0000-00-00 00:00:00"
+	    	}
+	    ]
+}
+```
+
+#### Show: Show a single hook record.
+[API documentation](http://developers.trustedsearch.org/#/v2-subscriptions-show)
+
+```ruby
+hook = TrustedSearch::V2::Hook.new
+puts hook.show(args.id).data.to_json
+```
+
+##### Reponse
+
+### Subscriptions
+
+#### Index: Retrieve an array of all hook subscriptions you are subscribed to.
+
+```ruby
+subscription = TrustedSearch::V2::HookSubscription.new
+puts subscription.index().data.to_json
 
 ```
 
@@ -191,25 +283,3 @@ Code: 409
 
 ```
 
-
-### Rake Examples
-
-Get all udpates in your account
-
-	rake v1:updates[YourPublicKey,YourPrivateKey]
-
-Get update for location 534f95e8-1de1-558f-885c-3962f22c9a28
-
-	rake v1:updates[YourPublicKey,YourPrivateKey,534f95e8-1de1-558f-885c-3962f22c9a28]
-
-Get update  since 1380611103
-
-	rake v1:updates_since[YourPublicKey,YourPrivateKey,1380611103]
-
-Submit a new location using JSON data in file relative path "examples/body.json"
-
-	rake v1:submit[YourPublicKey,YourPrivateKey,"examples/body.json"]
-
-SANDBOX ONLY: Test the fulfilment process for development & testing purposes
-
-	rake v1:test_fulfillment[YourPublicKey,YourPrivateKey,534f95e8-1de1-558f-885c-3962f22c9a28]

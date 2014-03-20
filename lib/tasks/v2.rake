@@ -1,3 +1,4 @@
+require 'pp'
 namespace :v2 do
 
 	task :default do
@@ -6,18 +7,18 @@ namespace :v2 do
 
 	namespace :hooks do
 		desc "Get a list of all the hooks."
-		task :all, [:public_key, :private_key] do |t, args|
+		task :index, [:public_key, :private_key] do |t, args|
 			TrustedSearch.public_key = args.public_key
 			TrustedSearch.private_key = args.private_key
 			TrustedSearch.environment = ( ENV['env'] ? ENV['env'] : 'sandbox')
 			
 			hook = TrustedSearch::V2::Hook.new
 			begin
-				puts hook.all().data.to_json
+				pp hook.index().data
 			rescue Exception => e
 				puts "Message: " + e.message.to_s
 				#puts "Body:"
-				#puts e.backtrace
+				puts e.backtrace
 				#puts "Code: " + e.code.to_s
 			end
 
@@ -44,14 +45,14 @@ namespace :v2 do
 
 	namespace :hooksubscriptions do
 		desc "Get a list of all the subscriptions you are subscribed to."
-		task :all, [:public_key, :private_key] do |t, args|
+		task :index, [:public_key, :private_key] do |t, args|
 			TrustedSearch.public_key = args.public_key
 			TrustedSearch.private_key = args.private_key
 			TrustedSearch.environment = ( ENV['env'] ? ENV['env'] : 'sandbox')
 			
 			subscription = TrustedSearch::V2::HookSubscription.new
 			begin
-				puts subscription.all().data.to_json
+				puts subscription.index().data.to_json
 			rescue Exception => e
 				puts "Message: " + e.message.to_s
 				#puts "Body:"
@@ -61,7 +62,7 @@ namespace :v2 do
 
 		end
 
-		desc "Get a single subscription."
+		desc "Show a single subscription."
 		task :show, [:public_key, :private_key, :id] do |t, args|
 			TrustedSearch.public_key = args.public_key
 			TrustedSearch.private_key = args.private_key
@@ -79,9 +80,8 @@ namespace :v2 do
 
 		end
 
-
-		desc "Add a single subscription."
-		task :add, [:public_key, :private_key, :hook, :target_url] do |t, args|
+		desc "Create a single subscription."
+		task :create, [:public_key, :private_key, :hook, :target_url] do |t, args|
 			TrustedSearch.public_key = args.public_key
 			TrustedSearch.private_key = args.private_key
 			TrustedSearch.environment = ( ENV['env'] ? ENV['env'] : 'sandbox')
@@ -92,7 +92,7 @@ namespace :v2 do
 					:hook => args.hook,
 					:target_url => args.target_url
 				}
-				puts subscription.add(data).data.to_json
+				puts subscription.create(data).data.to_json
 			rescue Exception => e
 				puts "Message: " + e.message.to_s
 				#puts "Body:"
@@ -102,8 +102,8 @@ namespace :v2 do
 
 		end
 
-		desc "Edit a single subscription."
-		task :edit, [:public_key, :private_key, :id, :hook, :target_url] do |t, args|
+		desc "Update a single subscription."
+		task :update, [:public_key, :private_key, :id, :hook, :target_url] do |t, args|
 			TrustedSearch.public_key = args.public_key
 			TrustedSearch.private_key = args.private_key
 			TrustedSearch.environment = ( ENV['env'] ? ENV['env'] : 'sandbox')
@@ -114,7 +114,7 @@ namespace :v2 do
 					:hook => args.hook,
 					:target_url => args.target_url
 				}
-				puts subscription.edit(args.id, data).data.to_json
+				puts subscription.update(args.id, data).data.to_json
 			rescue Exception => e
 				puts "Message: " + e.message.to_s
 				#puts "Body:"
@@ -124,7 +124,7 @@ namespace :v2 do
 
 		end
 
-		desc "Edit a single subscription."
+		desc "Destroy a single subscription."
 		task :destroy, [:public_key, :private_key, :id] do |t, args|
 			TrustedSearch.public_key = args.public_key
 			TrustedSearch.private_key = args.private_key

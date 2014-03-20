@@ -163,13 +163,11 @@ module TrustedSearch
       process(response)
     end
 
-
     def process(response)
       # puts response.to_s
       # body = JSON.parse(response.body)
       # puts body.to_json
       # puts response.message
-
       case response.code
 
       when 200, 201, 204

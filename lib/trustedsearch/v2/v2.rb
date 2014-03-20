@@ -7,6 +7,11 @@ module TrustedSearch
 			  end
 			  "/v2/"
 			end
+			#Update All request to Version 2.
+			def request(method='get', resource_url, params, body)
+				TrustedSearch::api_version = 2
+				super
+			end
 		end
 	end
 end

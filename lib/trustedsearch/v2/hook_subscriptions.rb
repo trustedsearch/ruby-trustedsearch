@@ -6,32 +6,35 @@ module TrustedSearch
       def initialize
         @resource = 'hook-subscriptions'
       end
-      
 
-      def all()
+      #Retrieve an array of all hook subscriptions
+      def index()
         method_url = @resource
         return self.get(method_url)
       end
 
-      #Get the details of a single hook
+      #Show the details of a single hook
       def show(id = nil)
         method_url = @resource + "/" + id
         params = {}
         return self.get(method_url, params)
       end
 
-      def add(data = nil)
+      #Create a new subscription
+      def create(data = nil)
         method_url = @resource
         params = {}
         return self.post(method_url, params, data)
       end
 
-      def edit(id = nil, data)
+      #Update a subscription
+      def update(id = nil, data)
         method_url = @resource + "/" + id
         params = {}
         return self.put(method_url, params, data)
       end
 
+      #Delete/Destroy a subscription
       def destroy(id = nil)
         method_url = @resource + "/" + id
         return self.delete(method_url)
