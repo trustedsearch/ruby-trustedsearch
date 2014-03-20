@@ -201,7 +201,7 @@ puts hook.index().data.to_json
 ##### Rake
 
 ```ruby
-rake v2:hooks:index[0e2e66593bd4e7423ab83b2ded17acfa,pakaThe3rupHuprEnupraCha]
+rake v2:hooks:index[PUBLIC_KEY,PRIVATE_KEY]
 ```
 
 ##### Response
@@ -252,7 +252,7 @@ puts hook.show("1").data.to_json
 ##### Rake
 
 ```ruby
-rake v2:hooks:show[0e2e66593bd4e7423ab83b2ded17acfa,pakaThe3rupHuprEnupraCha,1]
+rake v2:hooks:show[PUBLIC_KEY,PRIVATE_KEY,1]
 ```
 
 ##### Reponse
@@ -289,7 +289,7 @@ pp subscription.index().data
 ##### Rake
 
 ```ruby
-rake v2:hooksubscriptions:index[0e2e66593bd4e7423ab83b2ded17acfa,pakaThe3rupHuprEnupraCha]
+rake v2:hooksubscriptions:index[PUBLIC_KEY,PRIVATE_KEY]
 ```
 
 ##### Response
@@ -338,7 +338,7 @@ pp subscription.create(data).data
 ##### Rake
 
 ```ruby
-rake v2:hooksubscriptions:create[0e2e66593bd4e7423ab83b2ded17acfa,pakaThe3rupHuprEnupraCha,location.update,http://api.myendpoint.com/trustedsearch/location-updates]
+rake v2:hooksubscriptions:create[PUBLIC_KEY,PRIVATE_KEY,location.update,http://api.myendpoint.com/trustedsearch/location-updates]
 ```
 
 ##### Response
@@ -370,7 +370,7 @@ pp subscription.show("bdd46e50-669a-49cf-93ce-db682f6e9008").data
 ##### Rake
 
 ```ruby
-rake env=local v2:hooksubscriptions:show[0e2e66593bd4e7423ab83b2ded17acfa,pakaThe3rupHuprEnupraCha,bdd46e50-669a-49cf-93ce-db682f6e9008]
+rake env=local v2:hooksubscriptions:show[PUBLIC_KEY,PRIVATE_KEY,bdd46e50-669a-49cf-93ce-db682f6e9008]
 ```
 
 ##### Response
@@ -407,7 +407,7 @@ pp subscription.update("bdd46e50-669a-49cf-93ce-db682f6e9008", data).data
 ##### Rake
 
 ```ruby
-rake v2:hooksubscriptions:update[0e2e66593bd4e7423ab83b2ded17acfa,pakaThe3rupHuprEnupraCha,bdd46e50-669a-49cf-93ce-db682f6e9008,location.audit,http://api.myendpoint.com/trustedsearch/location-audit]
+rake v2:hooksubscriptions:update[PUBLIC_KEY,PRIVATE_KEY,bdd46e50-669a-49cf-93ce-db682f6e9008,location.audit,http://api.myendpoint.com/trustedsearch/location-audit]
 ```
 
 ##### Response
@@ -439,7 +439,7 @@ pp subscription.destroy(args.id).data
 ##### Rake
 
 ```ruby
-rake v2:hooksubscriptions:destroy[0e2e66593bd4e7423ab83b2ded17acfa,pakaThe3rupHuprEnupraCha,bdd46e50-669a-49cf-93ce-db682f6e9008]
+rake v2:hooksubscriptions:destroy[PUBLIC_KEY,PRIVATE_KEY,bdd46e50-669a-49cf-93ce-db682f6e9008]
 ```
 
 ##### Response
