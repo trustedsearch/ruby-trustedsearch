@@ -32,7 +32,7 @@ namespace :v2 do
 			
 			hook = TrustedSearch::V2::Hook.new
 			begin
-				puts hook.show(args.id).data.to_json
+				pp hook.show(args.id).data
 			rescue Exception => e
 				puts "Message: " + e.message.to_s
 				#puts "Body:"
@@ -52,7 +52,7 @@ namespace :v2 do
 			
 			subscription = TrustedSearch::V2::HookSubscription.new
 			begin
-				puts subscription.index().data.to_json
+				pp subscription.index().data
 			rescue Exception => e
 				puts "Message: " + e.message.to_s
 				#puts "Body:"
@@ -70,7 +70,7 @@ namespace :v2 do
 			
 			subscription = TrustedSearch::V2::HookSubscription.new
 			begin
-				puts subscription.show(args.id).data.to_json
+				pp subscription.show(args.id).data
 			rescue Exception => e
 				puts "Message: " + e.message.to_s
 				#puts "Body:"
@@ -92,7 +92,7 @@ namespace :v2 do
 					:hook => args.hook,
 					:target_url => args.target_url
 				}
-				puts subscription.create(data).data.to_json
+				pp subscription.create(data).data
 			rescue Exception => e
 				puts "Message: " + e.message.to_s
 				#puts "Body:"
@@ -114,7 +114,7 @@ namespace :v2 do
 					:hook => args.hook,
 					:target_url => args.target_url
 				}
-				puts subscription.update(args.id, data).data.to_json
+				pp subscription.update(args.id, data).data
 			rescue Exception => e
 				puts "Message: " + e.message.to_s
 				#puts "Body:"
@@ -132,7 +132,7 @@ namespace :v2 do
 			
 			subscription = TrustedSearch::V2::HookSubscription.new
 			begin
-				puts subscription.destroy(args.id).data.to_json
+				pp subscription.destroy(args.id).data
 			rescue Exception => e
 				puts "Message: " + e.message.to_s
 				#puts "Body:"

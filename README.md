@@ -234,14 +234,116 @@ puts hook.show(args.id).data.to_json
 
 ##### Reponse
 
+```ruby
+{
+	:status =>	"success",
+	:code =>	200,
+	:message =>	"",
+	:data=>
+		{
+			:id          =>	1,
+			:name        =>	"location.updates",
+			:description =>	"Data for the location has been update within TRUSTEDSearch ecosystem.",
+			:product_id  =>	nil,
+			:created_at  =>	"0000-00-00 00:00:00",
+			:updated_at  =>	"0000-00-00 00:00:00"
+		}
+}
+```
+
 ### Subscriptions
 
 #### Index: Retrieve an array of all hook subscriptions you are subscribed to.
 
 ```ruby
 subscription = TrustedSearch::V2::HookSubscription.new
-puts subscription.index().data.to_json
+pp subscription.index().data
 
+```
+
+##### Response
+
+```ruby
+{
+	:status=>"success",
+ 	:code=>200,
+ 	:message=>"",
+ 	:data=>	[
+ 		{
+			:id         =>	"624c83f1-3c0d-4b27-86e1-c80d88dbf8e2",
+			:hook_id    =>	1,
+			:user_id    =>	94,
+			:target_url =>	"http://api.myendpoint.com/trustedsearch/location-updates",
+			:created_at =>	"2014-03-20 18:32:45",
+			:updated_at =>	"2014-03-20 18:32:45"
+		},
+   		{
+			:id         =>	"bdd46e50-669a-49cf-93ce-db682f6e9008",
+			:hook_id    =>	2,
+			:user_id    =>	94,
+			:target_url =>	"http://api.myendpoint.com/trustedsearch/location-audits",
+			:created_at =>	"2014-03-20 18:33:21",
+			:updated_at =>	"2014-03-20 18:33:21"
+    	}
+    ]
+}
+```
+
+
+#### Create: Create a new hook subscription
+
+```ruby
+
+subscription = TrustedSearch::V2::HookSubscription.new
+
+data = {
+	:hook => "location.updates",
+	:target_url => "http://api.myendpoint.com/trustedsearch/location-updates"
+}
+pp subscription.create(data).data	
+
+```
+
+##### Response
+```ruby
+{
+	:status  =>	"success",
+	:code    =>	200,
+	:message =>	"",
+ 	:data=>	{
+		:hook_id    =>	1,
+		:target_url =>	"http://api.myendpoint.com/trustedsearch/location-updates",
+		:user_id    =>	94,
+		:id         =>	"bdd46e50-669a-49cf-93ce-db682f6e9008",
+		:updated_at =>	"2014-03-20 18:33:21",
+		:created_at =>	"2014-03-20 18:33:21"
+	}
+}
+```
+
+#### Show: Show a hook subscription record
+
+```ruby
+subscription = TrustedSearch::V2::HookSubscription.new
+pp subscription.show("bdd46e50-669a-49cf-93ce-db682f6e9008").data
+```
+
+##### Response
+
+```ruby
+{
+	:status  =>	"success",
+	:code    =>	200,
+	:message =>	"",
+	:data    =>	{
+		:id         =>	"bdd46e50-669a-49cf-93ce-db682f6e9008",
+		:hook_id    =>	1,
+		:user_id    =>	94,
+		:target_url =>	"http://api.myendpoint.com/trustedsearch/location-updates",
+		:created_at =>	"2014-03-20 18:33:21",
+		:updated_at =>	"2014-03-20 18:33:21"
+	}
+}
 ```
 
 ### Error Handling
