@@ -346,6 +346,53 @@ pp subscription.show("bdd46e50-669a-49cf-93ce-db682f6e9008").data
 }
 ```
 
+#### Update: Update an existing hook subscription record.
+
+```ruby
+subscription = TrustedSearch::V2::HookSubscription.new
+data = {
+	:hook => "loocation.audit",
+	:target_url => "http://api.myendpoint.com/trustedsearch/location-audit"
+}
+pp subscription.update("bdd46e50-669a-49cf-93ce-db682f6e9008", data).data
+```
+
+##### Response
+```ruby
+{
+	:status  =>	"success",
+	:code    =>	200,
+	:message =>	"",
+	:data    =>	{
+		:id         =>	"bdd46e50-669a-49cf-93ce-db682f6e9008",
+		:hook_id    =>	2,   ###<----- Notice this changed to a 2
+		:user_id    =>	94,
+		:target_url =>	"http://api.myendpoint.com/trustedsearch/location-audit",   ####<----Notice this updated.
+		:created_at =>	"2014-03-20 18:33:21",
+		:updated_at =>	"2014-03-20 18:35:11"
+	}
+}
+
+```
+
+#### Destroy: Destroy an existing hook-subscription record.
+
+```ruby
+subscription = TrustedSearch::V2::HookSubscription.new
+pp subscription.destroy(args.id).data
+```
+
+##### Response
+
+```ruby
+{
+	:status  =>	"success",
+	:code    =>	200,
+	:message => "Successfully removed subscription : bdd46e50-669a-49cf-93ce-db682f6e9008",
+	:data    =>	[]
+}
+```
+
 ### Error Handling
 Exceptions are thrown when there is an api issue.
 
