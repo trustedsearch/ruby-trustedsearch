@@ -229,7 +229,7 @@ puts hook.index().data.to_json
 
 ```ruby
 hook = TrustedSearch::V2::Hook.new
-puts hook.show(args.id).data.to_json
+puts hook.show("1").data.to_json
 ```
 
 ##### Reponse
