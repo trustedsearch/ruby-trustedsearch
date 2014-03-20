@@ -198,6 +198,12 @@ hook = TrustedSearch::V2::Hook.new
 puts hook.index().data.to_json
 ```
 
+##### Rake
+
+```ruby
+rake v2:hooks:index[0e2e66593bd4e7423ab83b2ded17acfa,pakaThe3rupHuprEnupraCha]
+```
+
 ##### Response
 ```ruby
 {
@@ -240,6 +246,13 @@ puts hook.index().data.to_json
 ```ruby
 hook = TrustedSearch::V2::Hook.new
 puts hook.show("1").data.to_json
+
+```
+
+##### Rake
+
+```ruby
+rake v2:hooks:show[0e2e66593bd4e7423ab83b2ded17acfa,pakaThe3rupHuprEnupraCha,1]
 ```
 
 ##### Reponse
