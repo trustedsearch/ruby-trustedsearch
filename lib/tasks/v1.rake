@@ -69,7 +69,37 @@ namespace :v1 do
 
 		file.close
 
-	end
+  end
+
+
+  desc "Submit a location to be validate before passing it to postBusiness."
+  task :validate, [:public_key, :private_key, :file] do |t, args|
+    TrustedSearch.public_key = args.public_key
+    TrustedSearch.private_key = args.private_key
+    TrustedSearch.environment = ( ENV['env'] ? ENV['env'] : 'sandbox')
+    body_file = ( args.file ? args.file : nil)
+    if(body_file.nil?)
+      puts "You must specify a valid body file."
+      next
+    end
+
+    file = File.open(body_file, "rb")
+    begin
+      api = TrustedSearch::V1.new
+      contents = file.read
+      response = api.postValidate(JSON.parse(contents))
+      puts response.code
+      puts response.data
+    rescue Exception => e
+      puts "Message: " + e.message.to_s
+      puts "Body:"
+      puts e.body
+      puts "Code: " + e.code.to_s
+    end
+
+    file.close
+
+  end
 
 	task :test_fulfillment, [:public_key, :private_key, :uuid] do |t, args|
 		TrustedSearch.public_key = args.public_key
