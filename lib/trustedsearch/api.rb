@@ -42,8 +42,12 @@ module TrustedSearch
   	def postBusiness( data = [] )
   		method_url = 'local-business'
   		return self.post(method_url, {} , data )
-  	end
-
+    end
+    #Validate a record.
+    def postValidate( data = [] )
+      method_url = 'validate'
+      return self.post(method_url, {} , data )
+    end
 
     def putTestFulfillment( uuid = nil)
       method_url = 'test-fulfillment/' + uuid.to_s
