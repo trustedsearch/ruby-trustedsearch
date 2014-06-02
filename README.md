@@ -94,6 +94,42 @@ Get update  since 1380611103
 rake v1:updates_since[YourPublicKey,YourPrivateKey,1380611103]
 ```
 
+
+#### Submit Business for data validation
+See the [API documentation](http://developers.trustedsearch.org/#/v1-validate) for details.
+
+
+```ruby
+business_data = {
+    :contact => {
+        :firstName => "Albert",
+        :lastName => "Einstein",
+        :email => "albert@trustedsearch.org",
+        :phone => "5555555555"
+    },
+    :business => {
+        :name => "Albert's Relativity Lane",
+        :street => "123 Cherry Tree Lane",
+        :city => "Santa Barbara",
+        :state => "CA",
+        :postalCode => "93041",
+        :phoneTollFree =>"(800) 555-5555",
+        :website => "http://www.trustedsearch.org",
+        :email => "info@trustedsearch.org",
+    }
+}
+
+
+api = TrustedSearch::V1.new
+response = api.postValidate(business_data)
+
+##### Rake
+Validate single business record.
+```ruby
+rake v1:validate[YourPublicKey,YourPrivateKey,"examples/single.json"]
+```
+
+
 #### Submit New Business Listings
 
 See the [API documentation](http://developers.trustedsearch.org/#/submitting-a-business) for a list of parameters for each API resource.
