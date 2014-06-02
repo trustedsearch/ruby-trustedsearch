@@ -129,6 +129,9 @@ module TrustedSearch
 
     #get the end_point based upon the environment. Default to sandbox.
     def end_point
+      if(ENV['RAKE_ENV'])
+        TrustedSearch.environment = ENV['RAKE_ENV']
+      end
       if(TrustedSearch.environment == 'production')
         return TrustedSearch.environments[:production][:domain]
       elsif(TrustedSearch.environment == 'local')
