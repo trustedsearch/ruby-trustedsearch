@@ -122,6 +122,7 @@ business_data = {
 
 api = TrustedSearch::V1.new
 response = api.postValidate(business_data)
+```
 
 ##### Rake
 Validate single business record.
