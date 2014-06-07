@@ -1,3 +1,4 @@
+Version 1.11.0: Add improved error checking to handle timeout exceptions.
 Version 1.10.0: Add support for location validation.
 Version 1.0.9: Add support for Hooks & Hook Subscriptions
 Version 1.0.8: Updated usage, added method getBusinessUpdateSince. Add support for repo local dev.

@@ -18,6 +18,7 @@ require_relative "trustedsearch/v2/hooks"
 require_relative "trustedsearch/v2/hook_subscriptions"
 
 require_relative "trustedsearch/errors/error"
+require_relative "trustedsearch/errors/api_mock_response"
 require_relative "trustedsearch/errors/authentication_error"
 require_relative "trustedsearch/errors/connection_error"
 require_relative "trustedsearch/errors/invalid_request_error"

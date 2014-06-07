@@ -4,8 +4,19 @@ module TrustedSearch
 
     def initialize(response = nil, code = nil )
 
-      body = JSON.parse(response.body)
-      @message = body['message']
+      @message = ''
+      body = ''
+      if(response.respond_to?("message"))
+        @message = response.message.to_s
+      end
+
+      if(response.respond_to?("body") && (response.body != nil))
+        body = JSON.parse(response.body.to_s)
+        # Use API message instead of exception message for more detail about issue when possible.
+        if(body.key?('message'))
+          @message = body['message']
+        end
+      end
       @code    = code
       @body    = body
 

@@ -141,7 +141,6 @@ module TrustedSearch
       end
     end
 
-
     def request(method='get', resource_url, params, body)
       #puts resource_url
       #puts params.to_json
@@ -161,7 +160,8 @@ module TrustedSearch
         end
 
       rescue Timeout::Error
-        raise ConnectionError.new("Timeout error (#{timeout}s)")
+        connection_response = ApiMockResponse.new("Timeout error (#{timeout}s)", nil, 500)
+        raise ConnectionError.new(connection_response)
       end
       process(response)
     end

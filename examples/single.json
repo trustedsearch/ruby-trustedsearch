@@ -1,26 +1,26 @@
 {
-    "externalId" : "ABC2014",
-    "order" : {
-        "onBehalfOf" : "Sample Partner",
-        "packages" : [
+    "externalId": "ABC2014",
+    "order": {
+        "onBehalfOf": "Sample Partner",
+        "packages": [
             17
         ],
-        "termsAccepted" : true
+        "termsAccepted": true
     },
-    "contact" : {
-        "firstName" : "Albert",
-        "lastName" : "Einstein",
-        "email" : "mark@trustedsearch.org",
-        "phone" : "5555555555"
+    "contact": {
+        "firstName": "Albert",
+        "lastName": "Einstein",
+
+        "phone": "5555555555"
     },
-    "business" : {
-        "name" : "Albert's Relativity Lane",
-        "street" : "123 Cherry Tree Lane",
-        "city" : "Santa Barbara",
-        "state" : "CA",
-        "postalCode" : "93041",
-        "phoneTollFree" :"(800) 555-5555",
-        "website":"http://www.trustedsearch.org",
-        "email" : "info@relativitylane.com"
+    "business": {
+        "name": "Albert's Relativity Lane",
+        "street": "123 Cherry Tree Lane",
+        "city": "Santa Barbara",
+        "state": "CA",
+        "postalCode": "93041",
+        "phoneTollFree": "(800) 555-5555",
+        "website": "http://www.trustedsearch.org",
+        "email": "info@relativitylane.com"
     }
 }
