@@ -16,6 +16,7 @@ require_relative "trustedsearch/api"
 require_relative "trustedsearch/v2/v2"
 require_relative "trustedsearch/v2/hooks"
 require_relative "trustedsearch/v2/hook_subscriptions"
+require_relative "trustedsearch/v2/locations"
 
 require_relative "trustedsearch/errors/error"
 require_relative "trustedsearch/errors/api_mock_response"
