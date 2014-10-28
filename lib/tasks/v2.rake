@@ -3,7 +3,26 @@ namespace :v2 do
 
 	task :default do
 
-	end
+  end
+
+  namespace :locations do
+
+    desc "Get all listings for a location"
+    task :listings, [:public_key, :private_key, :location_id] do |t, args|
+      TrustedSearch.public_key = args.public_key
+      TrustedSearch.private_key = args.private_key
+      TrustedSearch.environment = ( ENV['env'] ? ENV['env'] : 'sandbox')
+      location = TrustedSearch::V2::Location.new
+      begin
+        pp location.listings(args.location_id).data
+      rescue Exception => e
+        puts "Message: " + e.message.to_s
+        #puts "Body:"
+        puts e.backtrace
+        #puts "Code: " + e.code.to_s
+      end
+    end
+  end
 
 	namespace :hooks do
 		desc "Get a list of all the hooks."
