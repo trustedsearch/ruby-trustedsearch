@@ -311,6 +311,91 @@ rake v2:hooks:show[PUBLIC_KEY,PRIVATE_KEY,1]
 }
 ```
 
+### Locations
+
+#### Listings: Retrieve all listings for a given location
+[API documentation](http://developers.trustedsearch.org/#/v2-listings-by-location)
+
+
+```ruby
+    location_id = "00168e9c-d236-5466-19a9-74ef1af913d4"
+    location = TrustedSearch::V2::Location.new
+    pp location.listings(location_id).data
+   
+```
+
+#### Rake
+
+```ruby
+   rake v2:locations:listings[PUBLIC_KEY,PRIVATE_KEY,00168e9c-d236-5466-19a9-74ef1af913d4]
+```
+
+#### Response
+```ruby
+
+    {
+    :status=>"success",
+    :code=>200,
+    :message=>"",
+    :messages=>[],
+    :data=>
+        [
+        {
+            :id=>"f43e602d-f2d1-4b75-95a6-920b4a7d60f8",
+            :location_id=>"00168e9c-d236-5466-19a9-74ef1af913d4",
+            :product_id=>21,
+            :listing_status_id=>1,
+            :username=>"someUsernameHere",
+            :password=>"somePasswordHere",
+            :security_answer_1=>"pastor",
+            :security_answer_2=>"subway",
+            :fulfillment_status_id=>20,
+            :url=>"https://plus.google.com/1174700643453653187470/about",
+            :duplicate_url=>[],
+            :deleted_at=>nil,
+            :created_at=>"2014-01-05 21:02:11",
+            :updated_at=>"2014-01-22 00:57:34",
+            :external_id=>nil,
+         },
+        {
+            :id=>"a234a9-bb7f-40ba-bcab-2efb252e03fd",
+            :location_id=>"00168e9c-d236-5466-19a9-74ef1af913d4",
+            :product_id=>22,
+            :listing_status_id=>1,
+            :username=>"someUsernameHere",
+            :password=>"somePasswordHere",
+            :security_answer_1=>"pastor",
+            :security_answer_2=>"subway",
+            :fulfillment_status_id=>20,
+            :url=>
+             "http://www.bing.com/local/details.aspx?lid=YN873234224819592526&q=3423+Resale+Houston+TX",
+            :duplicate_url=>[],
+            :deleted_at=>nil,
+            :created_at=>"2014-01-05 21:02:11",
+            :updated_at=>"2014-02-04 18:14:30",
+            :external_id=>nil
+         },
+        {
+            :id=>"5f23422-c475-4cd0-822d-e9cd651f2f7d",
+            :location_id=>"00168e9c-d236-5466-19a9-74ef1af913d4",
+            :product_id=>23,
+            :listing_status_id=>1,
+            :username=>"someUsernameHere",
+            :password=>"somePasswordHere",
+            :security_answer_1=>"pastor",
+            :security_answer_2=>"subway",
+            :fulfillment_status_id=>20,
+            :url=>"http://local.yahoo.com/info-162342341?brand=local",
+            :duplicate_url=>[],
+            :deleted_at=>nil,
+            :created_at=>"2014-01-05 21:02:11",
+            :updated_at=>"2014-01-21 22:06:36",
+            :external_id=>nil,
+        }
+        ]
+    }
+```
+
 ### Subscriptions
 
 #### Index: Retrieve an array of all hook subscriptions you are subscribed to.
